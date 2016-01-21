@@ -3,16 +3,7 @@
 
 open Buffer
 
-exception UnknownShellEscape of string
-exception UnmatchedChar of char
-let buf_from_str str =
-  let buf = Buffer.create 16 in
-  Buffer.add_string buf str;
-  buf
 }
-
-let safechars = [^ '"' ''' '\\' ' ' '\t']+
-let space = [ ' ' '\t' ]+
 
 rule unescape_lexer buf = parse
  | "\\\\" { add_char buf '\\'; unescape_lexer buf lexbuf }
